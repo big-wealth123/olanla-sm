@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smartwatch Website</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@600;700&family=Poppins:wght@700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ================ RESET ================ */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family:'Inter',sans-serif;
+      background:#0b0b0b;color:#fff;overflow-x:hidden;
+      -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+    }
+
+    /* ================ HEADER ================ */
+    body > header:nth-of-type(1){
+      position:fixed;top:0;left:0;width:100%;z-index:60;
+      display:flex;justify-content:space-between;align-items:center;
+      padding:18px 60px;background:rgba(10,10,10,0.6);backdrop-filter:blur(10px);
+      transition:all .25s ease;
+    }
+    body > header:nth-of-type(1) > div:nth-of-type(1){font-family:'Poppins',sans-serif;font-size:26px;font-weight:700}
+    body > header:nth-of-type(1) nav:nth-of-type(1){display:flex;gap:36px;align-items:center}
+    body > header:nth-of-type(1) nav:nth-of-type(1) > div{position:relative;cursor:pointer;font-weight:500}
+    body > header:nth-of-type(1) nav:nth-of-type(1) > div:hover{color:#4a90e2}
+
+    /* dropdown */
+    body > header:nth-of-type(1) nav:nth-of-type(1) > div > div:nth-of-type(1){
+      position:absolute;top:36px;left:0;background:#151515;padding:12px;border-radius:10px;display:none;flex-direction:column;gap:8px;min-width:180px;box-shadow:0 12px 40px rgba(0,0,0,.6)
+    }
+    body > header:nth-of-type(1) nav:nth-of-type(1) > div:hover > div:nth-of-type(1){display:flex}
+    body > header:nth-of-type(1) nav:nth-of-type(1) > div > div:nth-of-type(1) > a{color:#ddd;text-decoration:none;padding:8px 12px;border-radius:6px}
+    body > header:nth-of-type(1) nav:nth-of-type(1) > div > div:nth-of-type(1) > a:hover{background:#0e2b36;color:#fff}
+
+    /* Buy button (last child anchor) */
+    body > header:nth-of-type(1) nav:nth-of-type(1) > a:nth-of-type(1){
+      background:linear-gradient(135deg,#4a90e2,#50e3c2);padding:10px 20px;border-radius:40px;color:#fff;text-decoration:none;font-family:'Montserrat',sans-serif;font-weight:600;letter-spacing:.8px;box-shadow:0 10px 30px rgba(74,144,226,.18);transition:transform .18s ease,box-shadow .18s ease}
+    body > header:nth-of-type(1) nav:nth-of-type(1) > a:nth-of-type(1):hover{transform:translateY(-3px);box-shadow:0 16px 44px rgba(80,227,194,.18)}
+
+    /* hamburger for mobile */
+    #menu-btn{display:none;font-size:30px;cursor:pointer}
+
+    /* ================ HERO ================ */
+    body > section:nth-of-type(1){
+      min-height:100vh;padding-top:110px;display:flex;gap:40px;align-items:center;padding-left:80px;padding-right:80px
+    }
+    body.scrolled > section:nth-of-type(1) > div:nth-of-type(1){opacity:1;transform:none}
+
+    body > section:nth-of-type(1) > div:nth-of-type(1){width:52%;font-size:48px;line-height:1.05;font-weight:700;opacity:0;transform:translateY(18px);transition:all .9s cubic-bezier(.2,.9,.3,1)}
+    body > section:nth-of-type(1) > div:nth-of-type(1) p{color:#bfbfbf;font-size:18px;margin-top:18px;max-width:620px}
+
+    body > section:nth-of-type(1) > div:nth-of-type(2){width:48%;display:flex;align-items:center;justify-content:center}
+    body > section:nth-of-type(1) > div:nth-of-type(2) img{width:380px;animation:spin 12s linear infinite;filter:drop-shadow(0 18px 40px rgba(0,160,255,.12));transition:transform .35s,filter .35s}
+    body > section:nth-of-type(1) > div:nth-of-type(2) img:hover{transform:scale(1.04);animation-play-state:paused}
+
+    @keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+
+    /* CTA Row under hero text */
+    body > section:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1){margin-top:28px;display:flex;gap:16px}
+    body > section:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > button{padding:12px 20px;border-radius:999px;border:none;cursor:pointer;font-family:'Montserrat',sans-serif;font-weight:600}
+    body > section:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(1){background:linear-gradient(135deg,#4a90e2,#50e3c2);color:#fff}
+    body > section:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(2){background:transparent;color:#fff;border:1px solid rgba(255,255,255,.08)}
+
+    /* ================ FEATURES ================ */
+    body > section:nth-of-type(2){background:#f5f5f5;color:#111;padding:80px 60px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+    body > section:nth-of-type(2) > div:nth-of-type(1){font-size:32px;font-weight:700}
+    body > section:nth-of-type(2) > div:nth-of-type(2){display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+
+    /* feature cards using nth-of-type within this section */
+    body > section:nth-of-type(2) > div:nth-of-type(2) > article{background:#fff;padding:18px;border-radius:14px;box-shadow:0 8px 30px rgba(0,0,0,.08);display:flex;flex-direction:column;gap:10px}
+    body > section:nth-of-type(2) > div:nth-of-type(2) > article h4{margin-top:8px;font-size:18px}
+    body > section:nth-of-type(2) > div:nth-of-type(2) > article p{color:#666;font-size:14px}
+
+    /* ================ MODELS ================ */
+    body > section:nth-of-type(3){padding:80px 60px;display:flex;flex-direction:column;gap:28px}
+    body > section:nth-of-type(3) > h3{font-size:32px}
+    body > section:nth-of-type(3) > div:nth-of-type(1){display:flex;gap:20px;flex-wrap:wrap}
+    body > section:nth-of-type(3) > div:nth-of-type(1) > article{background:linear-gradient(180deg,#0f0f0f,#151515);padding:18px;border-radius:12px;width:260px;box-shadow:0 10px 40px rgba(0,0,0,.5);display:flex;flex-direction:column;gap:12px}
+    body > section:nth-of-type(3) > div:nth-of-type(1) > article img{width:100%;height:180px;object-fit:contain}
+    body > section:nth-of-type(3) > div:nth-of-type(1) > article h4{font-size:18px}
+    body > section:nth-of-type(3) > div:nth-of-type(1) > article p{color:#bfbfbf;font-size:14px}
+    body > section:nth-of-type(3) > div:nth-of-type(1) > article button{margin-top:auto;padding:10px;border-radius:10px;border:none;background:linear-gradient(135deg,#4a90e2,#50e3c2);color:#fff;cursor:pointer}
+
+    /* ================ SPECS ================ */
+    body > section:nth-of-type(4){background:#111;padding:80px 60px;display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center}
+    body > section:nth-of-type(4) > div:nth-of-type(1){display:flex;justify-content:center}
+    body > section:nth-of-type(4) > div:nth-of-type(1) img{width:320px}
+    body > section:nth-of-type(4) > div:nth-of-type(2) ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    body > section:nth-of-type(4) > div:nth-of-type(2) ul li{background:linear-gradient(180deg,#0f0f0f,#131313);padding:12px;border-radius:10px}
+
+    /* ================ COMPARISON ================ */
+    body > section:nth-of-type(5){padding:80px 60px;display:flex;flex-direction:column;gap:20px}
+    body > section:nth-of-type(5) > div:nth-of-type(1){display:flex;gap:20px}
+    body > section:nth-of-type(5) > div:nth-of-type(1) > div{flex:1;background:#fff;padding:18px;border-radius:12px;color:#111}
+    .stat{height:10px;background:#eee;border-radius:999px;overflow:hidden}
+    .stat > i{display:block;height:100%;background:linear-gradient(90deg,#4a90e2,#50e3c2);width:60%}
+
+    /* ================ TESTIMONIALS ================ */
+    body > section:nth-of-type(6){background:#111;padding:80px 60px;color:#fff;display:flex;flex-direction:column;gap:20px}
+    .test-carousel{display:flex;gap:20px;overflow:hidden}
+    .test-carousel > blockquote{min-width:300px;background:linear-gradient(180deg,#0f0f0f,#151515);padding:18px;border-radius:12px}
+    .test-carousel img{width:48px;height:48px;border-radius:50%;object-fit:cover}
+
+    /* ================ FAQ ================ */
+    body > section:nth-of-type(7){padding:80px 60px;background:#f5f5f5;color:#111}
+    .faq > details{background:#fff;padding:14px;border-radius:10px;margin-bottom:10px}
+
+    /* ================ NEWSLETTER ================ */
+    body > section:nth-of-type(8){padding:60px 60px;background:linear-gradient(135deg,#1a1a1a,#2b2b2b);display:flex;align-items:center;justify-content:space-between;border-radius:12px;margin:30px 60px}
+    body > section:nth-of-type(8) > div:nth-of-type(1){font-size:22px;font-weight:700}
+    body > section:nth-of-type(8) > div:nth-of-type(2){display:flex;gap:12px}
+    body > section:nth-of-type(8) input{padding:12px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.08);background:transparent;color:#fff}
+    body > section:nth-of-type(8) button{padding:12px 20px;border-radius:999px;border:none;background:linear-gradient(135deg,#4a90e2,#50e3c2);color:#fff}
+
+    /* ================ FOOTER ================ */
+    footer{background:#111;padding:40px 60px;color:#bdbdbd;display:flex;justify-content:space-between;gap:30px}
+    footer div{min-width:160px}
+    footer a{color:#bdbdbd;text-decoration:none}
+    footer a:hover{color:#4a90e2}
+
+    /* ================ RESPONSIVE ================ */
+    @media(max-width:1000px){
+      body > section:nth-of-type(1){flex-direction:column;padding-left:30px;padding-right:30px}
+      body > section:nth-of-type(1) > div:nth-of-type(1){width:100%;text-align:center}
+      body > section:nth-of-type(1) > div:nth-of-type(2){width:100%}
+      body > section:nth-of-type(2){grid-template-columns:1fr;gap:20px;padding:40px 30px}
+      body > section:nth-of-type(3) > div:nth-of-type(1){justify-content:center}
+      body > header:nth-of-type(1) nav:nth-of-type(1){position:fixed;top:0;right:-100%;height:100vh;width:260px;flex-direction:column;padding-top:110px;background:#0b0b0b}
+      #menu-btn{display:block}
+      .show-menu{right:0 !important}
+      footer{flex-direction:column}
+      body > section:nth-of-type(8){flex-direction:column;align-items:flex-start;margin:20px}
+    }
+
+  </style>
+</head>
+<body>
+
+<header>
+  <div>SmartWatch</div>
+  <div id="menu-btn" onclick="toggleMenu()">☰</div>
+
+  <nav id="nav-menu">
+    <div>Home
+      <div>
+        <a href="#home">Overview</a>
+        <a href="#new">New Arrivals</a>
+      </div>
+    </div>
+
+    <div>Features
+      <div>
+        <a href="#health">Health & Fitness</a>
+        <a href="#gps">GPS & Navigation</a>
+        <a href="#connect">Connectivity</a>
+        <a href="#battery">Battery</a>
+      </div>
+    </div>
+
+    <div>Models
+      <div>
+        <a href="#model-a">Model A</a>
+        <a href="#model-b">Model B</a>
+        <a href="#compare">Compare Models</a>
+      </div>
+    </div>
+
+    <div>Specs
+      <div>
+        <a href="#display">Display</a>
+        <a href="#sensors">Sensors</a>
+        <a href="#connectivity">Connectivity</a>
+      </div>
+    </div>
+
+    <div>Support
+      <div>
+        <a href="#faq">FAQs</a>
+        <a href="#manual">User Manual</a>
+        <a href="#warranty">Warranty</a>
+      </div>
+    </div>
+
+    <a href="#buy">Buy Now</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section id="home">
+  <div>
+    Experience the Future on Your Wrist
+    <p>Next‑gen smartwatch: AMOLED display, 7‑day battery, advanced health tracking, and AI features.</p>
+
+    <div>
+      <button onclick="scrollToSection('new')">Explore</button>
+      <button onclick="scrollToSection('buy')">Buy Now</button>
+    </div>
+  </div>
+  <div>
+    <img src="images/34.avif" alt="Smartwatch" />
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features">
+  <div>Powerful features built for everyday life</div>
+  <div>
+    <article>
+      <div style="font-size:28px">❤️</div>
+      <h4>Health & Fitness</h4>
+      <p>Heart rate, ECG, SpO₂, sleep and activity tracking with smart insights.</p>
+    </article>
+
+    <article>
+      <div style="font-size:28px">🗺️</div>
+      <h4>GPS & Navigation</h4>
+      <p>Offline routes, turn‑by‑turn directions and multi‑sport tracking.</p>
+    </article>
+
+    <article>
+      <div style="font-size:28px">🔋</div>
+      <h4>Long Battery</h4>
+      <p>Up to 7 days in daily use and fast charging support.</p>
+    </article>
+
+    <article>
+      <div style="font-size:28px">🎨</div>
+      <h4>Customization</h4>
+      <p>Thousands of watch faces and quick‑swap straps to match your style.</p>
+    </article>
+  </div>
+</section>
+
+<!-- MODELS -->
+<section id="new">
+  <h3>Choose your model</h3>
+  <div>
+    <article id="model-a">
+      <img src="https://i.imgur.com/PLKZ8Wv.png" alt="Model A" />
+      <h4>Model A</h4>
+      <p>Compact and lightweight — perfect for fitness.</p>
+      <button>Buy Model A</button>
+    </article>
+
+    <article id="model-b">
+      <img src="https://i.imgur.com/PLKZ8Wv.png" alt="Model B" />
+      <h4>Model B</h4>
+      <p>Classic design with larger display and premium materials.</p>
+      <button>Buy Model B</button>
+    </article>
+
+    <article id="model-c">
+      <img src="https://i.imgur.com/PLKZ8Wv.png" alt="Model C" />
+      <h4>Model C</h4>
+      <p>Pro version with LTE, extra sensors and advanced features.</p>
+      <button>Buy Model C</button>
+    </article>
+  </div>
+</section>
+
+<!-- SPECS -->
+<section id="specs">
+  <div>
+    <img src="https://i.imgur.com/PLKZ8Wv.png" alt="Watch Specs" />
+  </div>
+  <div>
+    <ul>
+      <li><strong>Display:</strong> AMOLED, 450 nits</li>
+      <li><strong>Battery:</strong> 7 days typical use</li>
+      <li><strong>Sensors:</strong> HR, SpO₂, accel, gyro</li>
+      <li><strong>Water</strong>: 5ATM</li>
+      <li><strong>Connectivity:</strong> Bluetooth, Wi‑Fi, LTE</li>
+    </ul>
+  </div>
+</section>
+
+<!-- COMPARISON -->
+<section id="compare">
+  <h3>Compare models</h3>
+  <div>
+    <div>
+      <h4>Model A</h4>
+      <div class="stat"><i style="width:55%"></i></div>
+    </div>
+    <div>
+      <h4>Model B</h4>
+      <div class="stat"><i style="width:75%"></i></div>
+    </div>
+    <div>
+      <h4>Model C</h4>
+      <div class="stat"><i style="width:90%"></i></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <h3>What users say</h3>
+  <div class="test-carousel" id="carousel">
+    <blockquote>
+      <div style="display:flex;gap:12px;align-items:center"><img src="https://i.pravatar.cc/48?img=1" alt="user"><div><strong>Jane D.</strong><p style="color:#999">Runner</p></div></div>
+      <p style="margin-top:12px;color:#ddd">Love the battery life and the health insights — accurate and simple to use.</p>
+    </blockquote>
+
+    <blockquote>
+      <div style="display:flex;gap:12px;align-items:center"><img src="https://i.pravatar.cc/48?img=2" alt="user"><div><strong>Mark S.</strong><p style="color:#999">Traveler</p></div></div>
+      <p style="margin-top:12px;color:#ddd">GPS and navigation saved my hikes — reliable and fast.</p>
+    </blockquote>
+
+    <blockquote>
+      <div style="display:flex;gap:12px;align-items:center"><img src="https://i.pravatar.cc/48?img=3" alt="user"><div><strong>Lisa W.</strong><p style="color:#999">Designer</p></div></div>
+      <p style="margin-top:12px;color:#ddd">Stylish, lightweight, and the faces are beautiful.</p>
+    </blockquote>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <h3>Frequently asked questions</h3>
+  <div class="faq">
+    <details>
+      <summary>What is the battery life?</summary>
+      <p>Typically up to 7 days depending on use.</p>
+    </details>
+    <details>
+      <summary>Is it waterproof?</summary>
+      <p>Yes, rated to 5ATM for swimming and showering.</p>
+    </details>
+    <details>
+      <summary>Does it support LTE?</summary>
+      <p>Model C supports LTE for standalone calls and data.</p>
+    </details>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section id="newsletter">
+  <div>Stay updated — get the latest launches and offers</div>
+  <div>
+    <input id="email" placeholder="Your email address" />
+    <button onclick="subscribe()">Subscribe</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <strong>SmartWatch</strong>
+    <p style="color:#999;margin-top:8px">Premium smartwatches designed for everyday life.</p>
+  </div>
+  <div>
+    <h4>Support</h4>
+    <a href="#faq">FAQs</a><br>
+    <a href="#manual">Manual</a><br>
+    <a href="#warranty">Warranty</a>
+  </div>
+  <div>
+    <h4>Company</h4>
+    <a href="#about">About</a><br>
+    <a href="#careers">Careers</a>
+  </div>
+  <div>
+    <h4>Social</h4>
+    <a href="#">Twitter</a><br>
+    <a href="#">Instagram</a>
+  </div>
+</footer>
+
+<script>
+  /* menu toggle */
+  function toggleMenu(){document.getElementById('nav-menu').classList.toggle('show-menu')}
+
+  /* scroll to section */
+  function scrollToSection(id){
+    var el=document.getElementById(id);if(!el)return;el.scrollIntoView({behavior:'smooth',block:'start'});document.getElementById('nav-menu').classList.remove('show-menu')}
+
+  /* simple carousel auto-scroll */
+  (function(){
+    const carousel=document.getElementById('carousel');
+    let pos=0;
+    setInterval(()=>{pos+=320; if(pos>=(carousel.scrollWidth)) pos=0; carousel.scrollTo({left:pos,behavior:'smooth'})},3500);
+  })();
+
+  /* subscribe (basic) */
+  function subscribe(){
+    const email=document.getElementById('email').value.trim();
+    if(!email){alert('Please enter your email');return}
+    alert('Subscribed: '+email);
+    document.getElementById('email').value='';
+  }
+
+  /* reveal hero on scroll */
+  window.addEventListener('scroll',()=>{document.body.classList.add('scrolled')});
+</script>
+
+</body>
+</html>
