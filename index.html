@@ -12,10 +12,16 @@
 <body>
 <header>
   <div> <img src="./images/watch.png" alt=""><span>Olanla SmartWatch</span></div>
-  <div id="menu-btn" onclick="toggleMenu()" aria-controls="nav-menu" aria-expanded="false">☰</div>
+  <button id="menu-btn" onclick="toggleMenu()" aria-controls="nav-menu" aria-expanded="false" aria-label="Open menu">☰</button>
 
   <nav id="nav-menu" aria-hidden="true">
     <button id="close-menu" class="close-btn" aria-label="Close menu">&times;</button>
+    <div class="nav-head">
+      <div style="display:flex;align-items:center;gap:10px">
+        <img src="./images/watch.png" alt="" style="width:36px;height:36px;border-radius:8px;object-fit:cover">
+        <div><strong>Olanla</strong><div style="font-size:13px;color:var(--muted)">Menu</div></div>
+      </div>
+    </div>
     <div>Home
       <div>
         <a href="#home">Overview</a>
@@ -62,7 +68,7 @@
 
  <section id="home">
   <div class="reveal">
-    <h1 class="typed">Experience the Future on Your Wrist</h1>
+    <h1 class="typed text-neon animate">Experience the <span class="text-scan animate">Future</span> on Your Wrist</h1>
     <p>Next‑gen smartwatch: AMOLED display, 7‑day battery, advanced health tracking, and AI features.</p>
     <p class="hero-sub">Seamless calls, music, and notifications — precise GPS and multi‑sport tracking. Lightweight, durable, and designed for everyday adventure.</p>
     <ul class="hero-features" aria-hidden="true">
@@ -446,7 +452,7 @@
 </section>
 
 
-<footer>
+<footer class="footer-futuristic">
   <div class="footer-brand footer-col">
     <strong>Olanla SmartWatch</strong>
     <p class="muted" style="margin-top:8px">Premium smartwatches designed for everyday life.</p>
@@ -481,27 +487,57 @@
 
 <script>
   /* menu toggle + accessibility attributes */
+  let _lastMenuTrigger = null;
+  let _menuFocusHandler = null;
   function toggleMenu(){
     const menu = document.getElementById('nav-menu');
     const btn = document.getElementById('menu-btn');
     if(!menu || !btn) return;
-    menu.classList.toggle('show-menu');
-    const isOpen = menu.classList.contains('show-menu');
-    btn.setAttribute('aria-expanded', isOpen);
-    btn.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
-    menu.setAttribute('aria-hidden', !isOpen);
-    document.body.classList.toggle('menu-open', isOpen);
+
+    const willOpen = !menu.classList.contains('show-menu');
+    if(willOpen){
+      _lastMenuTrigger = document.activeElement;
+      menu.classList.add('show-menu');
+      btn.setAttribute('aria-expanded', true);
+      btn.setAttribute('aria-label', 'Close menu');
+      menu.setAttribute('aria-hidden', false);
+      document.body.classList.add('menu-open');
+
+      // move focus into the menu for keyboard users
+      const first = menu.querySelector('a, button, [tabindex]:not([tabindex="-1"])');
+      if(first && typeof first.focus === 'function') first.focus();
+
+      // trap focus inside the menu
+      _menuFocusHandler = function(e){
+        if(e.key === 'Tab'){
+          const focusable = Array.from(menu.querySelectorAll('a,button,input,select,textarea,[tabindex]:not([tabindex="-1"])')).filter(el=>!el.disabled && el.offsetParent !== null);
+          if(focusable.length === 0) return;
+          const idx = focusable.indexOf(document.activeElement);
+          if(e.shiftKey && idx === 0){ e.preventDefault(); focusable[focusable.length-1].focus(); }
+          else if(!e.shiftKey && idx === focusable.length -1){ e.preventDefault(); focusable[0].focus(); }
+        }
+      };
+      document.addEventListener('keydown', _menuFocusHandler);
+    } else {
+      menu.classList.remove('show-menu');
+      btn.setAttribute('aria-expanded', false);
+      btn.setAttribute('aria-label', 'Open menu');
+      menu.setAttribute('aria-hidden', true);
+      document.body.classList.remove('menu-open');
+      if(_menuFocusHandler) document.removeEventListener('keydown', _menuFocusHandler);
+      _menuFocusHandler = null;
+      if(_lastMenuTrigger && _lastMenuTrigger.focus) _lastMenuTrigger.focus();
+      _lastMenuTrigger = null;
+    }
   }
 
   /* initialize ARIA + keyboard handler for button and close icon */
   document.addEventListener('DOMContentLoaded', ()=>{
     const btn = document.getElementById('menu-btn');
     if(!btn) return;
-    btn.setAttribute('role','button');
+    // button element has native semantics; ensure ARIA state is correct
     btn.setAttribute('aria-expanded', false);
     btn.setAttribute('aria-label','Open menu');
-    btn.setAttribute('tabindex',0);
-    btn.addEventListener('keypress', (e)=>{ if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleMenu(); } });
 
     const closeBtn = document.getElementById('close-menu');
     if(closeBtn) closeBtn.addEventListener('click', toggleMenu);
@@ -517,6 +553,7 @@
         submenu.id = submenuId;
         parent.setAttribute('aria-controls', submenuId);
         parent.setAttribute('aria-expanded', false);
+        parent.setAttribute('tabindex', 0); // make keyboard focusable on mobile
         submenu.setAttribute('aria-hidden', true);
 
         parent.addEventListener('click', (e)=>{
@@ -526,6 +563,7 @@
           parent.setAttribute('aria-expanded', isOpen);
           submenu.setAttribute('aria-hidden', !isOpen);
         });
+        parent.addEventListener('keydown', (e)=>{ if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); parent.click(); } });
       });
 
       // remove open states when resizing to desktop
@@ -545,11 +583,8 @@
     const btn = document.getElementById('menu-btn');
     if(!menu || !btn) return;
     if(menu.classList.contains('show-menu') && !menu.contains(e.target) && !btn.contains(e.target)){
-      menu.classList.remove('show-menu');
-      menu.setAttribute('aria-hidden', true);
-      btn.setAttribute('aria-expanded', false);
-      btn.setAttribute('aria-label', 'Open menu');
-      document.body.classList.remove('menu-open');
+      // use toggleMenu to ensure focus handling is cleaned up
+      toggleMenu();
     }
   });
 
@@ -557,10 +592,7 @@
   document.addEventListener('keydown', (e)=>{
     if(e.key === 'Escape'){
       const menu = document.getElementById('nav-menu');
-      const btn = document.getElementById('menu-btn');
-      if(menu){ menu.classList.remove('show-menu'); menu.setAttribute('aria-hidden', true); }
-      if(btn){ btn.setAttribute('aria-expanded', false); btn.setAttribute('aria-label', 'Open menu'); }
-      document.body.classList.remove('menu-open');
+      if(menu && menu.classList.contains('show-menu')){ toggleMenu(); }
     }
   });
 

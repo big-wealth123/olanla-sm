@@ -85,9 +85,51 @@ font-size: 20px;
     body > header:nth-of-type(1) nav:nth-of-type(1) > a:nth-of-type(1):hover{transform:translateY(-3px);box-shadow:0 16px 44px rgba(80,227,194,.18)}
 
     /* hamburger for mobile */
-    
-    
-   #menu-btn,#close-btn{display:none;font-size:30px;cursor:pointer}
+
+   #menu-btn,#close-menu{display:none;font-size:30px;cursor:pointer}
+
+/* Mobile (off-canvas) menu: show hamburger, hide desktop nav, provide accessible off-canvas nav */
+@media (max-width:900px){
+  /* show hamburger button in header */
+  #menu-btn{display:block;background:transparent;border:0;color:var(--muted);font-size:28px;cursor:pointer;padding:6px 10px;border-radius:10px}
+  #menu-btn:hover{background:rgba(255,255,255,0.02);color:#fff}
+  #menu-btn:focus{outline:3px solid rgba(74,144,226,0.12);outline-offset:4px}
+
+  /* hide desktop inline nav to use off-canvas instead */
+  body > header:nth-of-type(1) nav{display:none}
+
+  /* off-canvas nav when opened (toggle .show-menu via JS) */
+  body > header:nth-of-type(1) nav{position:fixed;right:0;top:var(--safe-top);height:calc(100% - var(--safe-top));width:320px;max-width:92%;display:flex;flex-direction:column;gap:12px;padding:20px;background:linear-gradient(180deg, rgba(6,6,6,0.98), rgba(10,10,10,0.96));box-shadow:-20px 12px 60px rgba(0,0,0,0.6);z-index:9999;transform:translateX(100%);opacity:0;transition:transform .28s ease,opacity .28s ease}
+  body > header:nth-of-type(1) nav.show-menu{transform:translateX(0);opacity:1;display:flex}
+
+  /* close button inside nav */
+  #close-menu{display:block;position:absolute;right:12px;top:12px;font-size:28px;background:transparent;border:0;color:var(--muted);cursor:pointer}
+  #close-menu:hover{color:#fff;background:rgba(255,255,255,0.02);border-radius:8px;padding:4px}
+
+  /* nav header (brand) inside off-canvas */
+  body > header:nth-of-type(1) nav .nav-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid rgba(255,255,255,0.02)}
+  body > header:nth-of-type(1) nav .nav-head img{width:36px;height:36px;border-radius:8px}
+  body > header:nth-of-type(1) nav .nav-head strong{font-size:16px}
+
+  /* stacked nav entries and larger touch targets */
+  body > header:nth-of-type(1) nav > div, body > header:nth-of-type(1) nav > a.buy-now{display:block;padding:14px 14px;border-radius:10px;color:#ddd;text-decoration:none;font-weight:700;font-size:18px}
+  body > header:nth-of-type(1) nav > div{border-radius:8px;padding:10px 12px;background:transparent}
+  body > header:nth-of-type(1) nav > div:hover, body > header:nth-of-type(1) nav a:hover{color:var(--accent1);background:rgba(74,144,226,0.03)}
+  body > header:nth-of-type(1) nav > div:focus{outline:2px solid rgba(74,144,226,0.08);outline-offset:3px}
+  body > header:nth-of-type(1) nav > a.buy-now{margin-top:8px}
+
+  /* submenu (accordion) behavior — smooth expand/collapse */
+  body > header:nth-of-type(1) nav > div > div{max-height:0;overflow:hidden;padding-left:10px;margin-top:8px;flex-direction:column;gap:8px;opacity:0;transition:max-height .32s ease,opacity .28s ease}
+  body > header:nth-of-type(1) nav > div.submenu-open > div{max-height:420px;opacity:1}
+  body > header:nth-of-type(1) nav > div[aria-controls]::after{content:'▸';float:right;transform:rotate(0);transition:transform .18s ease}
+  body > header:nth-of-type(1) nav > div.submenu-open[aria-controls]::after{transform:rotate(90deg)}
+
+  /* buy button stands out on mobile */
+  body > header:nth-of-type(1) nav > a.buy-now{background:linear-gradient(135deg,var(--accent1),var(--accent2));color:#06131a;padding:12px 18px;border-radius:999px;display:inline-flex;justify-content:center;margin-top:8px}
+
+  /* ensure focus styles for accessibility */
+  body > header:nth-of-type(1) nav a:focus, body > header:nth-of-type(1) nav > div:focus{outline:3px solid rgba(74,144,226,0.14);outline-offset:3px}
+}
  body > section:nth-of-type(1){
       min-height:100vh;padding-top:110px;display:flex;gap:40px;align-items:center;padding-left:80px;padding-right:80px
     }
@@ -1072,10 +1114,75 @@ footer .footer-brand strong{font-size:18px;color:#fff}
 .footer-legal{width:100%;margin-top:18px;border-top:1px solid rgba(255,255,255,0.03);padding-top:12px;color:var(--muted);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:13px}
 .back-to-top{color:var(--muted);text-decoration:none;font-size:14px}
 
+/* ===== Animated text utilities (opt-in via classes) ===== */
+:root{--neon-a:#4A90E2;--neon-b:#50E3C2;--neon-c:#9EF0D8}
+@keyframes neonPulse{0%{text-shadow:0 0 0 rgba(74,144,226,0);filter:drop-shadow(0 0 0 rgba(80,227,194,0))}35%{text-shadow:0 0 10px rgba(74,144,226,0.14);filter:drop-shadow(0 6px 20px rgba(80,227,194,0.06))}65%{text-shadow:0 0 20px rgba(74,144,226,0.2);filter:drop-shadow(0 12px 36px rgba(80,227,194,0.08))}100%{text-shadow:0 0 0 rgba(74,144,226,0);filter:drop-shadow(0 0 0 rgba(80,227,194,0))}}
+@keyframes waveGradient{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+@keyframes floatUpDown{0%{transform:translateY(0)}50%{transform:translateY(-6px)}100%{transform:translateY(0)}}
+@keyframes scanline{0%{transform:translateX(-120%);opacity:0}50%{transform:translateX(0%);opacity:0.06}100%{transform:translateX(120%);opacity:0}}
+
+.text-neon{color:transparent;background:linear-gradient(90deg,var(--neon-a),var(--neon-b));-webkit-background-clip:text;background-clip:text;position:relative}
+.text-neon::after{content:'';position:absolute;inset:0;z-index:-1;filter:blur(22px);opacity:0.22;background:linear-gradient(90deg,var(--neon-a),var(--neon-b));transform:translateY(2px)}
+.text-neon.animate{animation:neonPulse 2.8s ease-in-out infinite}
+
+.text-wave{background:linear-gradient(90deg,var(--neon-a),#A8FFDD,#FFD166);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;display:inline-block}
+.text-wave.animate{animation:waveGradient 5s linear infinite}
+
+.text-float{display:inline-block}
+.text-float.animate{animation:floatUpDown 4.2s ease-in-out infinite}
+
+.text-scan{position:relative;display:inline-block;overflow:hidden}
+.text-scan::after{content:'';position:absolute;left:0;top:0;height:100%;width:120%;background:linear-gradient(90deg,transparent rgba(255,255,255,0.05) 40%, rgba(255,255,255,0.12) 50%, rgba(255,255,255,0.05) 60%, transparent);transform:skewX(-12deg);animation:scanline 2s linear infinite}
+
+/* reduced motion fallback */
+@media (prefers-reduced-motion: reduce){
+  .text-neon.animate,.text-wave.animate,.text-float.animate,.text-scan::after{animation:none}
+  .text-neon::after{opacity:0.12}
+}
+
+/* ===== Futuristic footer (add class `footer-futuristic` to <footer>) ===== */
+.footer-futuristic{position:relative;overflow:hidden;border-top:0;padding:56px 64px;background:linear-gradient(180deg,#050506 0%, #091018 40%, #081116 100%);color:rgba(255,255,255,0.95);box-shadow:inset 0 1px 80px rgba(20,20,30,0.55)}
+.footer-futuristic::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 10% 20%, rgba(74,144,226,0.04), transparent 8%),radial-gradient(ellipse at 90% 80%, rgba(80,227,194,0.035), transparent 12%);pointer-events:none}
+.footer-futuristic::after{content:'';position:absolute;left:-25%;top:8%;width:150%;height:200px;background:linear-gradient(90deg, rgba(74,144,226,0.06), rgba(80,227,194,0.06), rgba(255,255,255,0.02));transform:skewX(-14deg);filter:blur(28px);opacity:.9;animation:waveGradient 12s linear infinite;pointer-events:none}
+
+.footer-futuristic .footer-col{min-width:220px}
+.footer-futuristic .footer-brand strong{font-size:20px;letter-spacing:0.6px}
+.footer-futuristic .muted{color:rgba(255,255,255,0.66)}
+
+/* glowing social icons */
+.footer-futuristic .footer-social a{width:44px;height:44px;border-radius:12px;margin-right:6px;background:linear-gradient(90deg,rgba(255,255,255,0.02),transparent);color:#fff;display:inline-flex;align-items:center;justify-content:center;box-shadow:0 8px 28px rgba(0,0,0,0.5);transition:transform .22s ease,box-shadow .22s ease,background .22s ease}
+.footer-futuristic .footer-social a:hover{transform:translateY(-6px) scale(1.05);box-shadow:0 22px 54px rgba(74,144,226,0.22);background:linear-gradient(90deg,var(--neon-a),var(--neon-b));color:#06131a}
+.footer-futuristic .footer-social a i{transition:filter .16s ease}
+
+/* animated legal bar */
+.footer-futuristic .footer-legal{position:relative;border-top:0;padding-top:18px;margin-top:18px;background:linear-gradient(90deg, rgba(255,255,255,0.01), rgba(255,255,255,0.015));border-radius:10px;padding:12px 18px}
+.footer-futuristic .footer-legal::before{content:'';position:absolute;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,var(--neon-a),var(--neon-b),var(--neon-c));background-size:200% 100%;animation:waveGradient 8s linear infinite;border-top-left-radius:8px;border-top-right-radius:8px}
+.footer-futuristic .back-to-top{color:rgba(255,255,255,0.9);text-decoration:none}
+.footer-futuristic h4{color:#fff}
+.footer-futuristic a{color:rgba(255,255,255,0.9)}
+
+/* responsive tweaks */
+@media (max-width:900px){
+  .footer-futuristic{padding:32px 28px}
+  .footer-futuristic .footer-col{min-width:140px}
+}
+
+@media (prefers-reduced-motion: reduce){
+  .footer-futuristic::after,.footer-futuristic .footer-legal::before{animation:none;opacity:.6}
+}
+
 @media (max-width:700px){
   footer{padding:28px 20px}
   footer .footer-col{min-width:140px}
 }
+
+/* Accessibility + focus for futuristic footer */
+.footer-futuristic .footer-social a:focus-visible{outline:3px solid rgba(74,144,226,0.18);outline-offset:3px;box-shadow:0 12px 30px rgba(74,144,226,0.08)}
+.footer-futuristic a:focus-visible{outline:3px solid rgba(74,144,226,0.12);outline-offset:3px}
+.footer-futuristic .footer-legal{font-size:13px}
+@media (prefers-contrast: more){ .footer-futuristic::after{opacity:0.75} }
+
+/* End footer-futuristic polish */
 
 /* ===== Modal styles (Buy now popup) ===== */
 .modal-overlay{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.6);z-index:9999;opacity:0;pointer-events:none;transition:opacity .18s ease}
