@@ -56,7 +56,7 @@
       </div>
     </div>
 
-    <a href="#buy">Buy Now</a>
+    <a href="#buy" class="buy-now" data-product="Olanla SmartWatch">Buy Now</a>
   </nav>
 </header>
 
@@ -81,11 +81,12 @@
    <model-viewer
    src="./images/apple_watch_ultra.glb"
    alt="3D watch"
-   auto-rotate
    camera-controls
    exposure="1"
+
    shadow-intensity="1"
    class="viewer"
+   
    ></model-viewer> 
   </div>
 </section>
@@ -128,21 +129,21 @@
       <img src="./images/david-svihovec-5qMN7iXbUsk-unsplash.jpg" alt="Model A" />
       <h4>Model A</h4>
       <p>Compact and lightweight — perfect for fitness.</p>
-      <button>Buy Model A</button>
+      <button class="buy-now" data-product="Model A">Buy Model A</button>
     </article>
 
     <article id="model-b">
       <img src="./images/alvan-nee-hoePQ6tDmJk-unsplash.jpg" alt="Model B" />
       <h4>Model B</h4>
       <p>Classic design with larger display and premium materials.</p>
-      <button>Buy Model B</button>
+      <button class="buy-now" data-product="Model B">Buy Model B</button>
     </article>
 
     <article class="model-c">
       <img src="./images/infino-photography-URlXm2Kx6uI-unsplash.jpg" alt="Model C" />
       <h4>Model C</h4>
       <p>Pro version with LTE, extra sensors and advanced features.</p>
-      <button>Buy Model C</button>
+      <button class="buy-now" data-product="Model C">Buy Model C</button>
     </article>
 
   </div>
@@ -157,7 +158,6 @@
        <model-viewer
    src="./images/apple_watch_ultra_-_orange.glb"
    alt="orange model"
-   auto-rotate
    camera-controls
    class="viewer-small"
    ></model-viewer>
@@ -170,6 +170,7 @@
       <li><strong>Water</strong>: 5ATM</li>
       <li><strong>Connectivity:</strong> Bluetooth, Wi‑Fi, LTE</li>
     </ul>
+    <div class="spec-actions"><button class="btn primary buy-now" data-product="Orange Model">Buy Now</button></div>
   </div>
 </section>
 <section class="specs">
@@ -177,7 +178,6 @@
        <model-viewer
    src="./images/apple_watch_ultra_2.glb"
    alt="model 2"
-   auto-rotate
    camera-controls
    class="viewer-small"
    ></model-viewer>
@@ -190,7 +190,7 @@
       <li><strong>Water</strong>: 5ATM</li>
       <li><strong>Connectivity:</strong> Bluetooth, Wi‑Fi, LTE</li>
     </ul>
-    <div class="spec-actions"><button class="btn primary">Buy Now</button></div>
+    <div class="spec-actions"><button class="btn primary buy-now" data-product="Model 2">Buy Now</button></div>
   </div>
 </section>
 <section class="specs">
@@ -198,7 +198,6 @@
        <model-viewer
    src="./images/apple_watch_series_7_-_free_watch-face_sdctm.glb"
    alt="series 7"
-   auto-rotate
    camera-controls
    class="viewer-small"
    ></model-viewer>
@@ -211,7 +210,7 @@
       <li><strong>Water</strong>: 5ATM</li>
       <li><strong>Connectivity:</strong> Bluetooth, Wi‑Fi, LTE</li>
     </ul>
-    <div class="spec-actions"><button class="btn primary">Buy Now</button></div>
+    <div class="spec-actions"><button class="btn primary buy-now" data-product="Series 7">Buy Now</button></div>
   </div>
 </section>
 <section class="specs">
@@ -219,7 +218,6 @@
        <model-viewer
    src="./images/apple_watch_series_5.glb"
    alt="series 5"
-   auto-rotate
    camera-controls
    class="viewer-small"
    ></model-viewer>
@@ -232,7 +230,7 @@
       <li><strong>Water</strong>: 5ATM</li>
       <li><strong>Connectivity:</strong> Bluetooth, Wi‑Fi, LTE</li>
     </ul>
-    <div class="spec-actions"><button class="btn primary">Buy Now</button></div>
+    <div class="spec-actions"><button class="btn primary buy-now" data-product="Series 5">Buy Now</button></div>
   </div>
 </section>
 
@@ -287,7 +285,7 @@
   </div>
 
   <div class="compare-actions">
-    <button class="btn primary" onclick="scrollToSection('buy')">Buy Best Value</button>
+    <button class="btn primary buy-now" data-product="Best Value Pack">Buy Best Value</button>
     <button class="btn" onclick="scrollToSection('new')">View Models</button>
   </div>
 </section>
@@ -446,25 +444,35 @@
 
 
 <footer>
-  <div>
+  <div class="footer-brand footer-col">
     <strong>Olanla SmartWatch</strong>
-    <p style="color:#999;margin-top:8px">Premium smartwatches designed for everyday life.</p>
+    <p class="muted" style="margin-top:8px">Premium smartwatches designed for everyday life.</p>
+    <div class="footer-social">
+      <a href="#" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
+      <a href="#" aria-label="Instagram"><i class="fa fa-instagram"></i></a>
+      <a href="#" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
+    </div>
   </div>
-  <div>
+  <div class="footer-col">
     <h4>Support</h4>
     <a href="#faq">FAQs</a><br>
     <a href="#manual">Manual</a><br>
     <a href="#warranty">Warranty</a>
   </div>
-  <div>
+  <div class="footer-col">
     <h4>Company</h4>
     <a href="#about">About</a><br>
     <a href="#careers">Careers</a>
   </div>
-  <div>
-    <h4>Social</h4>
-    <a href="#">Twitter</a><br>
-    <a href="#">Instagram</a>
+  <div class="footer-col">
+    <h4>Resources</h4>
+    <a href="#support">Contact</a><br>
+    <a href="#shipping">Shipping</a><br>
+    <a href="#returns">Returns</a>
+  </div>
+  <div class="footer-legal">
+    <span>© 2026 Olanla — All rights reserved</span>
+    <a class="back-to-top" href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">Back to top</a>
   </div>
 </footer>  
 
@@ -892,6 +900,89 @@
     s.addEventListener('keydown', (e)=>{ if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); const d = s.closest('details'); if(d) d.open = !d.open; } });
   });
 
+})();
+</script>
+
+<!-- Buy modal -->
+<div id="buy-modal" class="modal-overlay" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-header">
+      <div class="modal-title" id="modal-title">Buy <span id="modal-product">Product</span></div>
+      <button class="close" aria-label="Close modal">&times;</button>
+    </div>
+    <div class="modal-body">
+      <p id="modal-desc">Select quantity and confirm to complete your purchase.</p>
+      <label for="modal-qty">Quantity:</label>
+      <select id="modal-qty" name="qty" aria-label="Quantity">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+      <div class="modal-total" style="margin-top:10px">Price: <strong id="modal-price">$199</strong></div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn" id="modal-cancel">Cancel</button>
+      <button class="btn primary" id="modal-confirm">Confirm Purchase</button>
+    </div>
+    <div class="success-msg sr-only" id="modal-success">Purchase confirmed — thanks!</div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const modalOverlay = document.getElementById('buy-modal');
+  const modal = modalOverlay.querySelector('.modal');
+  const productEl = document.getElementById('modal-product');
+  const priceEl = document.getElementById('modal-price');
+  const qty = document.getElementById('modal-qty');
+  const cancelBtn = document.getElementById('modal-cancel');
+  const confirmBtn = document.getElementById('modal-confirm');
+  const closeBtn = modal.querySelector('.close');
+  let lastTrigger = null;
+
+  function openModal(productName, priceText){
+    productEl.textContent = productName || 'Olanla SmartWatch';
+    priceEl.textContent = priceText || '$199';
+    modalOverlay.classList.add('active');
+    modalOverlay.setAttribute('aria-hidden','false');
+    document.body.classList.add('modal-open');
+    setTimeout(()=> closeBtn.focus(), 60);
+    document.addEventListener('focus', trapFocus, true);
+  }
+  function closeModal(){
+    modalOverlay.classList.remove('active');
+    modalOverlay.setAttribute('aria-hidden','true');
+    document.body.classList.remove('modal-open');
+    document.removeEventListener('focus', trapFocus, true);
+    if(lastTrigger && lastTrigger.focus) lastTrigger.focus();
+    lastTrigger = null;
+  }
+  function trapFocus(e){ if(!modal.contains(e.target)){ e.stopPropagation(); modal.querySelector('.close').focus(); } }
+
+  document.addEventListener('click', function(e){
+    const btn = e.target.closest('.buy-now');
+    if(!btn) return;
+    e.preventDefault();
+    lastTrigger = btn;
+    const product = btn.dataset.product || btn.textContent.trim() || 'Olanla SmartWatch';
+    openModal(product);
+  });
+
+  closeBtn.addEventListener('click', closeModal);
+  cancelBtn.addEventListener('click', closeModal);
+  modalOverlay.addEventListener('click', (e)=>{ if(e.target === modalOverlay) closeModal(); });
+  document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape' && modalOverlay.classList.contains('active')) closeModal(); });
+
+  confirmBtn.addEventListener('click', ()=>{
+    modal.classList.add('success');
+    document.getElementById('modal-success').classList.remove('sr-only');
+    setTimeout(()=>{ closeModal(); modal.classList.remove('success'); document.getElementById('modal-success').classList.add('sr-only'); }, 1400);
+  });
+
+  // Ensure modal doesn't propagate form submissions
+  modal.addEventListener('submit', (e)=> e.preventDefault());
 })();
 </script>
 
