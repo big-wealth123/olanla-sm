@@ -971,16 +971,18 @@ button:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(74,144,226,.
   body > section:nth-of-type(4),
   body > section:nth-of-type(5),
   body > section:nth-of-type(6),
-  body > section:nth-of-type(7){grid-template-columns:1fr;gap:20px;padding:48px 28px}
+  body > section:nth-of-type(7){grid-template-columns:1fr;gap:15px;padding:48px 28px}
   body > section:nth-of-type(2) > div:nth-of-type(2){grid-template-columns:1fr}
 
   /* specs lists single column + CTA full width */
   body > section:nth-of-type(4) ul,
   body > section:nth-of-type(5) ul,
   body > section:nth-of-type(6) ul,
-  body > section:nth-of-type(7) ul{grid-template-columns:1fr}
+  body > section:nth-of-type(7) ul{grid-template-columns:1fr;
+  
+ width: 80%; }
   .spec-actions{justify-content:stretch}
-  .spec-actions .btn{width:100%;display:block}
+  .spec-actions .btn{width:90%;display:block}
 
   /* ensure viewers have usable height on tablets */
   model-viewer{height:360px}
@@ -1008,10 +1010,10 @@ button:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(74,144,226,.
   /* Model/spec sections (4-7): stack, compress padding, images full-width */
   body > section:nth-of-type(4), body > section:nth-of-type(5), body > section:nth-of-type(6), body > section:nth-of-type(7){padding:36px 18px}
   body > section:nth-of-type(4) > div:nth-of-type(1), body > section:nth-of-type(5) > div:nth-of-type(1), body > section:nth-of-type(6) > div:nth-of-type(1), body > section:nth-of-type(7) > div:nth-of-type(1){padding:12px}
-  body > section:nth-of-type(4) > div:nth-of-type(1) img, body > section:nth-of-type(5) > div:nth-of-type(1) img, body > section:nth-of-type(6) > div:nth-of-type(1) img, body > section:nth-of-type(7) > div:nth-of-type(1) img{width:100%;max-width:320px}
+  body > section:nth-of-type(4) > div:nth-of-type(1) img, body > section:nth-of-type(5) > div:nth-of-type(1) img, body > section:nth-of-type(6) > div:nth-of-type(1) img, body > section:nth-of-type(7) > div:nth-of-type(1) img{width:80%;max-width:320px}
   .model-spec{margin:8px;padding:24px}
   .model-spec .spec-inner{grid-template-columns:1fr}
-  .spec-actions .btn{width:100%}
+  .spec-actions .btn{width:80%}
 
   /* Compare (section 8): cards and table stack, actions full-width */
   #compare{padding:36px 18px}
