@@ -653,6 +653,13 @@ body > section:nth-of-type(7) ul li:hover{
     width:90%;margin-bottom:18px;padding:18px;
   }
   .spec-actions .btn{width:90%}
+
+  body > section:nth-of-type(4) > div:nth-of-type(2) ul,
+  body > section:nth-of-type(5) > div:nth-of-type(2) ul,
+  body > section:nth-of-type(6) > div:nth-of-type(2) ul,
+  body > section:nth-of-type(7) > div:nth-of-type(2) ul{
+    display:block;
+  }
 }
 /* Mobile-first: progressively enhance for larger screens */
 
@@ -930,6 +937,12 @@ button:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(74,144,226,.
   body > section:nth-of-type(1) > div:nth-of-type(1) p{max-width:520px}
   body > section:nth-of-type(2){padding:60px 40px}
   body > section:nth-of-type(3){padding:60px 40px}
+
+  body > section:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(1),
+  body > section:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(2){
+    padding:12px 60px;
+    font-size:24px;
+  }
 }
 
 /* Tablet: off-canvas nav, stack grids, adjust hero and viewers */
@@ -1006,6 +1019,11 @@ button:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(74,144,226,.
 
   /* Compare (section 8): cards and table stack, actions full-width */
   #compare{padding:36px 18px}
+
+  body > section:nth-of-type(4), body > section:nth-of-type(5), body > section:nth-of-type(6), body > section:nth-of-type(7), body > section:nth-of-type(8){
+    margin:0 6%;
+  }
+
   #compare .compare-grid{grid-template-columns:1fr;gap:12px}
   .compare-cards{grid-template-columns:1fr;gap:12px}
   .compare-table-wrapper{overflow:auto}
@@ -1201,18 +1219,4 @@ footer .footer-brand strong{font-size:18px;color:#fff}
 
 
 
-@media (max-width: 650px) {
-section:nth-of-type(4),section:nth-of-type(5),section:nth-of-type(6),section:nth-of-type(7),section:nth-of-type(8){
-  margin: 0 6%;
-}
-.specs div:nth-of-type(1){
-  width: 90%;
-}  
-section:nth-of-type(4) div:nth-of-type(2) ul,section:nth-of-type(5) div:nth-of-type(2) ul,
-section:nth-of-type(6) div:nth-of-type(2) ul,section:nth-of-type(7) div:nth-of-type(2) ul,section:nth-of-type(8) div:nth-of-type(2) ul{
-  display: block;
-}    
-  .spec-actions button{
-    width: 90%;
-  }
-}
+
