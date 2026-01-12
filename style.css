@@ -234,7 +234,7 @@ background:linear-gradient(135deg,#4a90e2,#50e3c2);
 
 
 model-viewer{
-  width: 100%;
+  width: 90%;
   height: 500px;
 }
 
@@ -967,7 +967,7 @@ button:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(74,144,226,.
   body > section:nth-of-type(4) ul,
   body > section:nth-of-type(5) ul,
   body > section:nth-of-type(6) ul,
-  body > section:nth-of-type(7) ul{grid-template-columns:1fr;
+  body > section:nth-of-type(7) ul{display: block;
   
  width: 30%; }
   .spec-actions{justify-content:stretch}
