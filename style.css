@@ -544,6 +544,7 @@ body > section:nth-of-type(7){
   gap:40px;
   align-items:center;
   border-radius:12px;
+  
 }
 
 /* keep distinct backgrounds but apply consistent card treatments */
@@ -649,9 +650,9 @@ body > section:nth-of-type(7) ul li:hover{
   body > section:nth-of-type(5) > div:nth-of-type(1),
   body > section:nth-of-type(6) > div:nth-of-type(1),
   body > section:nth-of-type(7) > div:nth-of-type(1){
-    width:100%;margin-bottom:18px;padding:18px;
+    width:90%;margin-bottom:18px;padding:18px;
   }
-  .spec-actions .btn{width:100%}
+  .spec-actions .btn{width:90%}
 }
 /* Mobile-first: progressively enhance for larger screens */
 
@@ -659,7 +660,7 @@ body > section:nth-of-type(7) ul li:hover{
 img, video{max-width:100%;height:auto;display:block}
 
 /* model-viewer: fixed visible height; no background or animation */
-model-viewer{display:block;width:100%;height:500px;min-height:320px;max-width:560px;background:transparent;border-radius:14px;overflow:hidden;box-shadow:none}
+model-viewer{display:block;width:90%;height:500px;min-height:320px;max-width:560px;background:transparent;border-radius:14px;overflow:hidden;box-shadow:none}
 .viewer{max-width:520px;margin:0 auto}
 .viewer-small{max-width:360px;height:320px}
 
@@ -784,7 +785,7 @@ model-viewer{display:block;width:100%;height:500px;min-height:320px;max-width:56
   body > section:nth-of-type(4),
   body > section:nth-of-type(5),
   body > section:nth-of-type(6),
-  body > section:nth-of-type(7){grid-template-columns:1fr;gap:20px;padding:48px 28px}
+  body > section:nth-of-type(7){grid-template-columns:1fr;gap:10px;padding:48px 28px}
   body > section:nth-of-type(2) > div:nth-of-type(2){grid-template-columns:1fr}
   .test-carousel{overflow:auto}
 }
@@ -968,7 +969,7 @@ button:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(74,144,226,.
   body > section:nth-of-type(6) ul,
   body > section:nth-of-type(7) ul{grid-template-columns:1fr;
   
- width: 60%; }
+ width: 30%; }
   .spec-actions{justify-content:stretch}
   .spec-actions .btn{width:90%;display:block}
 
