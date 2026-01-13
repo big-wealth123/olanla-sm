@@ -980,10 +980,9 @@ button:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(74,144,226,.
   body > section:nth-of-type(4) ul,
   body > section:nth-of-type(5) ul,
   body > section:nth-of-type(6) ul,
-  body > section:nth-of-type(7) ul{display: block;
-  width: 100%; }
+  body > section:nth-of-type(7) ul{grid-template-columns: 1fr; }
   .spec-actions{justify-content:stretch}
-  .spec-actions .btn{width:90%;display:block}
+  .spec-actions .btn{width:96%;display:block}
 
   /* ensure viewers have usable height on tablets */
   model-viewer{height:360px}
