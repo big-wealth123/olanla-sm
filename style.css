@@ -980,14 +980,14 @@ button:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(74,144,226,.
   body > section:nth-of-type(4) ul,
   body > section:nth-of-type(5) ul,
   body > section:nth-of-type(6) ul,
-  body > section:nth-of-type(7) ul{grid-template-columns: 1fr; }
+  body > section:nth-of-type(7) ul{grid-template-columns: 1fr; padding: 2% 0;}
   .spec-actions{justify-content:stretch}
   .spec-actions .btn{width:96%;display:block ;margin:3% auto}
 
   /* ensure viewers have usable height on tablets */
-  model-viewer{height:360px}
-  .viewer-small{height:320px}
-margin: 0 4%;
+  model-viewer{height:360px;margin: 0 auto}
+  .viewer-small{height:320px }
+
   .test-carousel{overflow:auto}
 }
 
