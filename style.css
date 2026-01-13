@@ -291,12 +291,12 @@ width:fit-content;
 
 
         body > section:nth-of-type(4){background:#241919;padding:80px 60px;display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center;margin:40px 0}
-    body > section:nth-of-type(4) > div:nth-of-type(1){display:flex;justify-content:center}
+    body > section:nth-of-type(4) > div:nth-of-type(1){display:flex;justify-content:center;text-align:center}
     body > section:nth-of-type(4) > div:nth-of-type(1) img{width:320px}
     body > section:nth-of-type(4) > div:nth-of-type(2) ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:20px}
     body > section:nth-of-type(4) > div:nth-of-type(2) ul li{background:linear-gradient(180deg,#0f0f0f,#131313);padding:12px;border-radius:10px;margin:5px}
         body > section:nth-of-type(5){background:#111;padding:80px 60px;display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center;margin:40px 0}
-    body > section:nth-of-type(5) > div:nth-of-type(1){display:flex;justify-content:center}
+    body > section:nth-of-type(5) > div:nth-of-type(1){display:flex;justify-content:center;align-items:center;text-align:center}
     body > section:nth-of-type(5) > div:nth-of-type(1) img{width:320px}
     body > section:nth-of-type(5) > div:nth-of-type(2) ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:20px}
     body > section:nth-of-type(5) > div:nth-of-type(2) ul li{background:linear-gradient(180deg,#0f0f0f,#131313);padding:12px;border-radius:10px;margin:5px}
@@ -310,7 +310,7 @@ width:fit-content;
     body > section:nth-of-type(6) > div:nth-of-type(2) ul li{background:linear-gradient(180deg,#0f0f0f,#131313);padding:12px;border-radius:10px;margin:5px}
 
             body > section:nth-of-type(7){background:#111;padding:80px 60px;display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center;margin:40px 0}
-    body > section:nth-of-type(7) > div:nth-of-type(1){display:flex;justify-content:center}
+    body > section:nth-of-type(7) > div:nth-of-type(1){display:flex;justify-content:center;align-items:center;text-align:center}
     body > section:nth-of-type(7) > div:nth-of-type(1) img{width:320px}
     body > section:nth-of-type(7) > div:nth-of-type(2) ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:20px}
     body > section:nth-of-type(7) > div:nth-of-type(2) ul li{background:linear-gradient(180deg,#0f0f0f,#131313);padding:12px;border-radius:10px;margin:5px}
